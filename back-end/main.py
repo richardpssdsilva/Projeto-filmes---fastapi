@@ -30,3 +30,8 @@ def exibir_filmes():
         }
         )
     return{"filmes":lista}
+
+@app.delete("/filmes/{d_filmes}")
+def deletar_filme(id_filme: int):
+    funcao.deletar_filme(id_filme)
+    return{"mensagem": "Filme excluido com sucesso!"}
