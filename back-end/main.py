@@ -33,5 +33,9 @@ def exibir_filmes():
 
 @app.delete("/filmes/{d_filmes}")
 def deletar_filme(id_filme: int):
-    funcao.deletar_filme(id_filme)
-    return{"mensagem": "Filme excluido com sucesso!"}
+    filmes = funcao.buscar_filme(id_filme)
+    if filmes:
+        funcao.deletar_filme(id_filme)
+        return{"mensagem": "Filme excluido com sucesso!"}
+    else:
+        {"erro":"Filme não encotrado"}

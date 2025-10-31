@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 
 #URL da API Fastapi
-API_URL = "http://127.0.0.1:8000/"
+API_URL = "http://127.0.0.1:8000"
 
 st.set_page_config(page_title="Filmes", layout="wide")
 
@@ -40,3 +40,14 @@ elif menu == "Adicionar Filmes":
             st.success("filme,e adicionado com sucesso!")
         else:
             st.error("Erro ao adicionar o filme")
+
+elif menu=="Deletar filmes":
+    st.subheader(" 🚮 lixo Deletar Filmes")
+    id_filme = st.number_input("Id do filme a excluir", max_value=1, step=1)
+    if st.button("Excluir"):
+        response = requests.delete(f"{API_URL}/filmes/{id_filme}")
+        if response.status_code == 200:
+            data = response.json()
+            st.success("Filme excluido com sucesso!")
+        else:
+            st.error("Erro ao tentar excluir filme") 
