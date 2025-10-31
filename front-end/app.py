@@ -56,8 +56,20 @@ elif menu=="Deletar filmes":
             st.error("Erro ao tentar excluir filme")
 
 
-if menu == "Atualizar filmes":
+elif menu == "Atualizar filmes":
     st.subheader("⬆ Atualizar Filmes")
-    
+    id_filme = st.number_input("Id do filme a Atualizar", max_value=1, step=1)
+    if st.button("Atualizar"):
+        response = requests.up(f"{API_URL}/filmes/{id_filme}")
+        if response.status_code == 200:
+            data = response.json()
+            if "erro" not in data:
+                st.success("Filme Atualizado com sucesso!")
+            else:
+                st.error("Erro ao tentar Atualizar filme")
+        else:
+            st.error("Erro ao tentar Atualizar filme")
+
+
         
 
