@@ -4,9 +4,11 @@ import streamlit as st
 import requests
 
 #URL da API Fastapi
-API_URL = "http://127.0.0.1:8000/"
+API_URL = "http://127.0.0.1:8000/"ssss
 
-st.title("Gerenciador de Filmes")
+st.set_page_config(page_title="Filmes")
+
+st.title("Gerenciador de Filmes",layout="wide")
 
 
 menu = st.sidebar.radio("Navegação",
@@ -18,5 +20,9 @@ if menu == "Listar Filmes":
     if response.status_code == 200:
         st.write("Sucesso !!")
         filmes = response.json().get("filmes",[])
+        if filmes:
+            st.dataframe(filmes)
+        else:
+            st.info("Nemhum filme cadastrado ainda!")
     else:
-        st.error("Erro de conexão com a API.")
+        st.error("Erro de conexão com a API.")  
