@@ -42,12 +42,22 @@ elif menu == "Adicionar Filmes":
             st.error("Erro ao adicionar o filme")
 
 elif menu=="Deletar filmes":
-    st.subheader(" 🚮 lixo Deletar Filmes")
+    st.subheader(" 🚮  Deletar Filmes")
     id_filme = st.number_input("Id do filme a excluir", max_value=1, step=1)
     if st.button("Excluir"):
         response = requests.delete(f"{API_URL}/filmes/{id_filme}")
         if response.status_code == 200:
             data = response.json()
-            st.success("Filme excluido com sucesso!")
+            if "erro" not in data:
+                st.success("Filme excluido com sucesso!")
+            else:
+                st.error("Erro ao tentar excluir filme")
         else:
-            st.error("Erro ao tentar excluir filme") 
+            st.error("Erro ao tentar excluir filme")
+
+
+if menu == "Atualizar filmes":
+    st.subheader("⬆ Atualizar Filmes")
+    
+        
+
