@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 
 #URL da API Fastapi
-API_URL = "http://127.0.0.1:8000/"ssss
+API_URL = "http://127.0.0.1:8000/"
 
 st.set_page_config(page_title="Filmes")
 
@@ -25,4 +25,6 @@ if menu == "Listar Filmes":
         else:
             st.info("Nemhum filme cadastrado ainda!")
     else:
-        st.error("Erro de conexão com a API.")  
+        st.error("Erro de conexão com a API.")
+elif menu == "Cadastrar Filmes":
+    st.subheader("➕ Adicionar filmes")
